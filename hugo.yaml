@@ -1,3 +1,84 @@
-baseURL: https://example.org/
-locale: en-us
-title: My New Hugo Project
+baseURL: "https://smartsecurehome.com/"
+languageCode: "en-us"
+title: "Smart Home Tech"
+theme: "PaperMod"
+
+# Enable search indexing and taxonomy pages
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+pagination:
+  pagerSize: 10
+
+# Taxonomies for categorizing smart home gear
+taxonomies:
+  category: categories
+  tag: tags
+  protocol: protocols # Optional: e.g., Zigbee, Z-Wave, Matter, HomeKit
+
+params:
+  env: production
+  title: "Smart Home Tech"
+  description: "Guides, reviews, and home automation tips."
+  author: "Your Name"
+  
+  # Aesthetics
+  defaultTheme: auto # Options: light, dark, auto
+  disableThemeToggle: false
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowToc: true
+  TocOpen: false # Keep TOC collapsed by default for better mobile UX
+
+  # Main visual header on index page
+  homeInfoParams:
+    Title: "Welcome to Smart Home Tech 👋"
+    Content: >
+      Hands-on smart home reviews, Home Assistant tutorials, and home automation guides.
+
+  # Social Icons displayed on Home page
+  socialIcons:
+    - name: "github"
+      url: "https://github.com/yourprofile"
+    - name: "x"
+      url: "https://x.com/yourprofile"
+    - name: "rss"
+      url: "/index.xml"
+
+  # Cover Image Settings for Posts
+  cover:
+    hidden: false # Show cover image on post page
+    hiddenInList: false # Show thumbnail in post listings
+    auto: true # Auto pick cover images if named hero/cover
+
+# Main Navigation Menu
+menu:
+  main:
+    - name: "Posts"
+      url: "/posts/"
+      weight: 10
+    - name: "Categories"
+      url: "/categories/"
+      weight: 20
+    - name: "Tags"
+      url: "/tags/"
+      weight: 30
+    - name: "Search"
+      url: "/search/"
+      weight: 40
+
+# Markup settings for highlighters and TOC
+markup:
+  goldmark:
+    renderer:
+      unsafe: true # Allows raw HTML in Markdown (useful for custom buttons or affiliate disclosures)
+  tableOfContents:
+    endLevel: 4
+    startLevel: 2
+    ordered: false
