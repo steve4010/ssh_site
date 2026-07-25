@@ -1,0 +1,60 @@
+<div class="footer-links" style="text-align: center; margin: 10px 0; font-size: 0.85rem;">
+  <a href="/privacy/" style="color: inherit; text-decoration: underline;">Privacy Policy</a>
+</div>
+
+<div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:#1d1e20; color:#fff; padding:15px; text-align:center; z-index:9999; border-top: 1px solid #333;">
+  <p style="margin:0 0 10px 0; font-size: 0.9rem;">
+    We use cookies to analyze site traffic and enhance your experience. Read our <a href="/privacy/" style="color:#60a5fa; text-decoration:underline;">Privacy Policy</a>.
+  </p>
+  <button id="accept-cookies" style="background:#2563eb; color:#fff; border:none; padding:8px 16px; border-radius:4px; cursor:pointer; font-weight:bold; margin-right:8px;">Accept</button>
+  <button id="decline-cookies" style="background:#4b5563; color:#fff; border:none; padding:8px 16px; border-radius:4px; cursor:pointer;">Decline</button>
+</div>
+
+<script>
+  (function() {
+    var banner = document.getElementById('cookie-banner');
+    var acceptBtn = document.getElementById('accept-cookies');
+    var declineBtn = document.getElementById('decline-cookies');
+
+    // Function to inject tracking scripts (e.g., Google Analytics)
+    function loadAnalytics() {
+      // Example: Load Google Analytics (replace G-XXXXXXXXXX with your Measurement ID)
+      /*
+      var gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+      document.head.appendChild(gaScript);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+      */
+      console.log('Analytics loaded following user consent.');
+    }
+
+    var consent = localStorage.getItem('cookieConsent');
+
+    // If consent was previously granted, load analytics immediately
+    if (consent === 'granted') {
+      loadAnalytics();
+    } 
+    // If no preference has been saved yet, show the banner
+    else if (!consent) {
+      banner.style.display = 'block';
+    }
+
+    // Handle "Accept" click
+    acceptBtn.addEventListener('click', function() {
+      localStorage.setItem('cookieConsent', 'granted');
+      banner.style.display = 'none';
+      loadAnalytics();
+    });
+
+    // Handle "Decline" click
+    declineBtn.addEventListener('click', function() {
+      localStorage.setItem('cookieConsent', 'denied');
+      banner.style.display = 'none';
+    });
+  })();
+</script>
